@@ -20,7 +20,9 @@ export const FileUpload = ({ setText }: Props) => {
 
       const reader = new FileReader();
       reader.onload = (e) => {
-        setText(e.target?.result ?? '');
+        if (typeof e.target?.result === 'string') {
+          setText(e.target?.result);
+        }
       };
       reader.onerror = (err) => {
         console.error('Error reading file:', err);
